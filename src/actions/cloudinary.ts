@@ -3,13 +3,17 @@
 import { cloudinary } from "@/lib/cloudinary/client";
 import { env } from "@/lib/validators/env";
 
-export async function getUploadSignature(folder?: string) {
+export async function getUploadSignature(folder?: string, publicId?: string) {
   const timestamp = Math.round(new Date().getTime() / 1000);
   
   const params: Record<string, any> = {
     timestamp,
     folder: folder || "uploads",
   };
+
+  if (publicId) {
+    params.public_id = publicId;
+  }
 
   const signature = cloudinary.utils.api_sign_request(
     params,
@@ -22,6 +26,7 @@ export async function getUploadSignature(folder?: string) {
     cloudName: env.CLOUDINARY_CLOUD_NAME,
     apiKey: env.CLOUDINARY_API_KEY,
     folder: params.folder,
+    publicId: params.public_id,
   };
 }
 
