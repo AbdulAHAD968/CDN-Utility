@@ -32,7 +32,7 @@ export default function PlaygroundPage() {
    const [radius, setRadius] = useState(0);
    const [copied, setCopied] = useState<string | null>(null);
 
-   // Debounce values that trigger network requests (Cloudinary transformations)
+   
    const dWidth = useDebounce(width, 300);
    const dHeight = useDebounce(height, 300);
    const dBlur = useDebounce(blur, 300);
@@ -238,7 +238,7 @@ export default function PlaygroundPage() {
                </div>
             </div>
 
-            {/* Full-width Generated Snippets */}
+            
             <div className="mt-16 pt-12 border-t border-hairline">
                <Tabs defaultValue="nextjs" className="w-full flex flex-col gap-0">
                   <div className="space-y-6 mb-8">

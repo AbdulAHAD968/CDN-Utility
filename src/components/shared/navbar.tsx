@@ -17,7 +17,7 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-hairline bg-canvas/80 backdrop-blur-md px-6 md:px-10 py-4 flex items-center justify-between h-16">
-      {/* Left: Logo */}
+      
       <div className="flex-1 flex items-center">
         <Link href="/" className="flex items-center gap-2">
           <div className="w-5 h-5 bg-ink rotate-45 flex items-center justify-center">
@@ -28,7 +28,7 @@ export function Navbar() {
         </Link>
       </div>
 
-      {/* Middle: Navigation */}
+      
       <div className="hidden md:flex items-center gap-1 bg-surface-soft/50 p-1 rounded-full border border-hairline">
         {middleNavItems.map((item) => {
           const Icon = item.icon;
@@ -51,7 +51,7 @@ export function Navbar() {
         })}
       </div>
 
-      {/* Right: Settings */}
+      
       <div className="flex-1 flex items-center justify-end gap-4">
         <Link
           href="/settings"
