@@ -30,6 +30,32 @@ export async function getUploadSignature(folder?: string, publicId?: string) {
   };
 }
 
+export async function getBatchUploadSignatures(folder: string, publicIds: string[]) {
+  const timestamp = Math.round(new Date().getTime() / 1000);
+  
+  return publicIds.map(publicId => {
+    const params: Record<string, any> = {
+      timestamp,
+      folder,
+      public_id: publicId,
+    };
+
+    const signature = cloudinary.utils.api_sign_request(
+      params,
+      env.CLOUDINARY_API_SECRET
+    );
+
+    return {
+      signature,
+      timestamp,
+      publicId,
+      cloudName: env.CLOUDINARY_CLOUD_NAME,
+      apiKey: env.CLOUDINARY_API_KEY,
+      folder,
+    };
+  });
+}
+
 export async function deleteAsset(publicId: string) {
   try {
     const result = await cloudinary.uploader.destroy(publicId);

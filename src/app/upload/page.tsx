@@ -6,7 +6,7 @@ import { UploadZone } from "@/components/upload/upload-zone";
 import { NamingOptionsForm } from "@/components/upload/naming-options";
 import { useUploadStore } from "@/store/use-upload-store";
 import { Button } from "@/components/ui/button";
-import { getUploadSignature } from "@/actions/cloudinary";
+import { getUploadSignature, getBatchUploadSignatures } from "@/actions/cloudinary";
 import { generateSequentialNames } from "@/lib/naming/engine";
 import { toast } from "sonner";
 import { Loader2, CheckCircle2 } from "lucide-react";
@@ -33,61 +33,71 @@ export default function UploadPage() {
     const names = generateSequentialNames(queue.map(i => i.file), namingOptions);
 
     try {
+      // 1. Fetch ALL signatures in ONE request (Massive Optimization)
+      toast.info("Fetching upload signatures...");
+      const signatures = await getBatchUploadSignatures(namingOptions.folder, names);
 
-      const uploadPromises = queue.map(async (item, index) => {
-        if (item.status === "success") return;
+      // 2. Process uploads with a concurrency limit (e.g., 3 at a time)
+      // This prevents hitting browser connection limits and reduces failures
+      const CONCURRENCY_LIMIT = 3;
+      const itemsToUpload = queue.filter(item => item.status !== "success");
+      
+      const results = [];
+      for (let i = 0; i < itemsToUpload.length; i += CONCURRENCY_LIMIT) {
+        const chunk = itemsToUpload.slice(i, i + CONCURRENCY_LIMIT);
+        
+        const chunkPromises = chunk.map(async (item) => {
+          const indexInFullQueue = queue.findIndex(q => q.id === item.id);
+          const sigData = signatures[indexInFullQueue];
 
-        updateStatus(item.id, "uploading");
+          updateStatus(item.id, "uploading");
 
-        const publicId = names[index];
-        const sigData = await getUploadSignature(namingOptions.folder, publicId);
-
-        const formData = new FormData();
-        formData.append("file", item.file);
-        formData.append("api_key", sigData.apiKey);
-        formData.append("timestamp", sigData.timestamp.toString());
-        formData.append("signature", sigData.signature);
-        formData.append("folder", sigData.folder);
-        if (sigData.publicId) {
+          const formData = new FormData();
+          formData.append("file", item.file);
+          formData.append("api_key", sigData.apiKey);
+          formData.append("timestamp", sigData.timestamp.toString());
+          formData.append("signature", sigData.signature);
+          formData.append("folder", sigData.folder);
           formData.append("public_id", sigData.publicId);
-        }
 
-        return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.open("POST", `https://api.cloudinary.com/v1_1/${sigData.cloudName}/image/upload`);
+          return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", `https://api.cloudinary.com/v1_1/${sigData.cloudName}/image/upload`);
 
-          xhr.upload.onprogress = (e) => {
-            if (e.lengthComputable) {
-              const percent = Math.round((e.loaded / e.total) * 100);
-              updateProgress(item.id, percent);
-            }
-          };
+            xhr.upload.onprogress = (e) => {
+              if (e.lengthComputable) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                updateProgress(item.id, percent);
+              }
+            };
 
-          xhr.onload = () => {
-            if (xhr.status === 200) {
-              const response = JSON.parse(xhr.responseText);
-              updateStatus(item.id, "success", {
-                publicId: response.public_id,
-                url: response.secure_url
-              });
-              resolve(response);
-            } else {
-              const error = JSON.parse(xhr.responseText);
-              updateStatus(item.id, "error", { error: error.message });
-              reject(error);
-            }
-          };
+            xhr.onload = () => {
+              if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                updateStatus(item.id, "success", {
+                  publicId: response.public_id,
+                  url: response.secure_url
+                });
+                resolve(response);
+              } else {
+                const error = JSON.parse(xhr.responseText);
+                updateStatus(item.id, "error", { error: error.message });
+                resolve(null);
+              }
+            };
 
-          xhr.onerror = () => {
-            updateStatus(item.id, "error", { error: "Network error" });
-            reject("Network error");
-          };
+            xhr.onerror = () => {
+              updateStatus(item.id, "error", { error: "Network error" });
+              resolve(null);
+            };
 
-          xhr.send(formData);
+            xhr.send(formData);
+          });
         });
-      });
 
-      await Promise.allSettled(uploadPromises);
+        await Promise.all(chunkPromises);
+      }
+
       toast.success("Upload batch completed");
 
     } catch (error) {

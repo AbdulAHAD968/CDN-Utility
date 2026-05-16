@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { cn } from "@/lib/utils";
-import { Upload, X, FileImage, Loader2 } from "lucide-react";
+import { Upload, X, FileImage, Loader2, Copy, Check } from "lucide-react";
 import { useUploadStore } from "@/store/use-upload-store";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -13,6 +13,22 @@ import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 export function UploadZone() {
   const { addToQueue, queue, removeFromQueue, isUploading, clearQueue } = useUploadStore();
   const [clearConfirmOpen, setClearConfirmOpen] = useState(false);
+
+  const successfulUploads = queue.filter(item => item.status === "success");
+
+  const copyToClipboard = async (text: string, message: string = "URL copied") => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(message);
+    } catch (err) {
+      toast.error("Failed to copy");
+    }
+  };
+
+  const copyAllUrls = () => {
+    const urls = successfulUploads.map(item => item.url).join("\n");
+    copyToClipboard(urls, `Copied ${successfulUploads.length} URLs`);
+  };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     addToQueue(acceptedFiles);
@@ -63,14 +79,27 @@ export function UploadZone() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-serif text-2xl">Upload Queue ({queue.length})</h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setClearConfirmOpen(true)}
-              className="text-error hover:text-error hover:bg-error/10"
-            >
-              Clear All
-            </Button>
+            <div className="flex items-center gap-2">
+              {successfulUploads.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={copyAllUrls}
+                  className="border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
+                >
+                  <Copy className="w-4 h-4 mr-2" />
+                  Copy All ({successfulUploads.length})
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setClearConfirmOpen(true)}
+                className="text-error hover:text-error hover:bg-error/10"
+              >
+                Clear All
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -116,9 +145,19 @@ export function UploadZone() {
                 )}
 
                 {item.status === "success" && (
-                  <p className="text-[10px] text-success uppercase font-bold tracking-widest">
-                    ✓ Uploaded
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] text-success uppercase font-bold tracking-widest">
+                      ✓ Uploaded
+                    </p>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 rounded-full text-primary hover:bg-primary/10"
+                      onClick={() => item.url && copyToClipboard(item.url)}
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
                 )}
 
                 {item.status === "error" && (
