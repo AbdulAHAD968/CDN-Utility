@@ -24,17 +24,14 @@ export default function DashboardPage() {
 
       <main className="flex-1 container max-w-7xl mx-auto px-6 py-12 md:py-16 space-y-24 md:space-y-32">
 
-        
+
         <section className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-8 text-center lg:text-left relative z-10"
           >
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
-              Internal Asset Utility
-            </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] tracking-tight text-ink">
               Your photos,<br />
               <span className="text-primary">ready for the web.</span>
@@ -58,18 +55,18 @@ export default function DashboardPage() {
 
           <div className="relative h-[400px] md:h-[500px] w-full flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/5 blur-3xl -z-10 rounded-full scale-110" />
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 rotate-[-2deg] scale-95 md:scale-100">
               {ILLUSTRATIONS.map((src, i) => (
                 <motion.div
                   key={src}
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     scale: 1,
                     y: [0, i % 2 === 0 ? -15 : 15, 0],
                   }}
-                  transition={{ 
+                  transition={{
                     opacity: { duration: 1, delay: i * 0.1 },
                     scale: { duration: 1, delay: i * 0.1 },
                     y: { duration: 6 + i, repeat: Infinity, ease: "easeInOut" },
@@ -86,7 +83,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        
+
         <section className="space-y-16">
           <div className="text-center space-y-4 max-w-2xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-serif text-ink tracking-tight">The smarter way to manage assets.</h2>
@@ -99,7 +96,7 @@ export default function DashboardPage() {
               { icon: LayoutGrid, title: "Central Library", desc: "A beautiful, lightning-fast gallery for all your Cloudinary assets. Search, filter, and find what you need instantly." },
               { icon: Sliders, title: "Live Playground", desc: "Tweak transformations, resize on the fly, and copy production-ready code snippets. No more manual URL building." }
             ].map((f, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -149,32 +146,32 @@ export default function DashboardPage() {
             </div>
             <div className="relative order-1 lg:order-2">
               <div className="aspect-square rounded-[40px] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center p-12 overflow-hidden border border-primary/10">
-                 <div className="w-full h-full rounded-[32px] bg-white shadow-2xl p-8 flex flex-col gap-6">
-                    <div className="flex items-center gap-4 border-b border-hairline pb-4">
-                       <div className="w-3 h-3 rounded-full bg-error/20" />
-                       <div className="w-3 h-3 rounded-full bg-warning/20" />
-                       <div className="w-3 h-3 rounded-full bg-success/20" />
-                       <div className="ml-auto text-[10px] font-mono text-muted uppercase tracking-widest">cdn-transform-engine</div>
-                    </div>
-                    <div className="space-y-3 font-mono text-xs text-muted-soft overflow-hidden">
-                       <div className="text-primary">{"{"}</div>
-                       <div className="pl-4">"cloud_name": "cdnutility",</div>
-                       <div className="pl-4">"transformation": [</div>
-                       <div className="pl-8">{"{"} "quality": "auto" {"}"},</div>
-                       <div className="pl-8">{"{"} "fetch_format": "auto" {"}"},</div>
-                       <div className="pl-8">{"{"} "width": 800, "crop": "scale" {"}"}</div>
-                       <div className="pl-4">]</div>
-                       <div className="text-primary">{"}"}</div>
-                    </div>
-                    <div className="mt-auto h-2 w-full bg-surface-soft rounded-full overflow-hidden">
-                       <motion.div 
-                        animate={{ width: ["0%", "100%"] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                        className="h-full bg-primary" 
-                       />
-                    </div>
-                 </div>
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[100px] -z-10" />
+                <div className="w-full h-full rounded-[32px] bg-white shadow-2xl p-8 flex flex-col gap-6">
+                  <div className="flex items-center gap-4 border-b border-hairline pb-4">
+                    <div className="w-3 h-3 rounded-full bg-error/20" />
+                    <div className="w-3 h-3 rounded-full bg-warning/20" />
+                    <div className="w-3 h-3 rounded-full bg-success/20" />
+                    <div className="ml-auto text-[10px] font-mono text-muted uppercase tracking-widest">cdn-transform-engine</div>
+                  </div>
+                  <div className="space-y-3 font-mono text-xs text-muted-soft overflow-hidden">
+                    <div className="text-primary">{"{"}</div>
+                    <div className="pl-4">"cloud_name": "cdnutility",</div>
+                    <div className="pl-4">"transformation": [</div>
+                    <div className="pl-8">{"{"} "quality": "auto" {"}"},</div>
+                    <div className="pl-8">{"{"} "fetch_format": "auto" {"}"},</div>
+                    <div className="pl-8">{"{"} "width": 800, "crop": "scale" {"}"}</div>
+                    <div className="pl-4">]</div>
+                    <div className="text-primary">{"}"}</div>
+                  </div>
+                  <div className="mt-auto h-2 w-full bg-surface-soft rounded-full overflow-hidden">
+                    <motion.div
+                      animate={{ width: ["0%", "100%"] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                      className="h-full bg-primary"
+                    />
+                  </div>
+                </div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[100px] -z-10" />
               </div>
             </div>
           </div>
@@ -183,7 +180,7 @@ export default function DashboardPage() {
         {/* CTA Section */}
         <section className="px-4">
           <div className="bg-ink text-on-dark rounded-[40px] px-6 py-16 md:p-24 text-center space-y-8 relative overflow-hidden">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -199,7 +196,7 @@ export default function DashboardPage() {
                 </Button>
               </Link>
             </motion.div>
-            
+
             <div className="absolute top-0 right-0 w-[40%] h-[100%] bg-primary/5 blur-[100px] -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-[40%] h-[100%] bg-primary/10 blur-[100px] translate-y-1/2 -translate-x-1/2" />
           </div>

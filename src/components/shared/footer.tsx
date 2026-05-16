@@ -26,11 +26,11 @@ export function Footer() {
           
           <div className="flex items-center gap-6">
             {[
-              { name: "Facebook", href: "https://facebook.com/cdnutility" },
-              { name: "X", href: "https://x.com/cdnutility" },
-              { name: "Instagram", href: "https://instagram.com/cdnutility" },
-              { name: "LinkedIn", href: "https://linkedin.com/company/cdnutility" },
-              { name: "YouTube", href: "https://youtube.com/@cdnutility" }
+              { name: "YouTube", href: "https://www.youtube.com/@SevenLabSolutions" },
+              { name: "GitHub", href: "https://github.com/Seven-Lab-Solutions" },
+              { name: "LinkedIn", href: "https://linkedin.com/company/seven-lab-solutions" },
+              { name: "Instagram", href: "https://instagram.com/SevenLabSolutions" },
+              { name: "Facebook", href: "https://facebook.com/SevenLabSolutions" }
             ].map((social) => (
               <a 
                 key={social.name} 
