@@ -16,6 +16,8 @@ import { cn } from "@/lib/utils";
 const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop";
 
 
+import { useDebounce } from "@/hooks/use-debounce";
+
 const DEFAULT_ASSET = "samples/balloons";
 
 export default function PlaygroundPage() {
@@ -30,21 +32,28 @@ export default function PlaygroundPage() {
    const [radius, setRadius] = useState(0);
    const [copied, setCopied] = useState<string | null>(null);
 
+   // Debounce values that trigger network requests (Cloudinary transformations)
+   const dWidth = useDebounce(width, 300);
+   const dHeight = useDebounce(height, 300);
+   const dBlur = useDebounce(blur, 300);
+   const dRadius = useDebounce(radius, 300);
+   const dPublicId = useDebounce(publicId, 500);
+
    const transformString = useMemo(() => {
       const parts = [];
-      if (width) parts.push(`w_${width}`);
-      if (height) parts.push(`h_${height}`);
+      if (dWidth) parts.push(`w_${dWidth}`);
+      if (dHeight) parts.push(`h_${dHeight}`);
       if (crop) parts.push(`c_${crop}`);
       if (gravity !== "none") parts.push(`g_${gravity}`);
       if (quality) parts.push(`q_${quality}`);
       if (format) parts.push(`f_${format}`);
-      if (blur > 0) parts.push(`e_blur:${blur}`);
-      if (radius > 0) parts.push(`r_${radius === 100 ? 'max' : radius}`);
+      if (dBlur > 0) parts.push(`e_blur:${dBlur}`);
+      if (dRadius > 0) parts.push(`r_${dRadius === 100 ? 'max' : dRadius}`);
 
       return parts.join(",");
-   }, [width, height, crop, gravity, quality, format, blur, radius]);
+   }, [dWidth, dHeight, crop, gravity, quality, format, dBlur, dRadius]);
 
-   const generatedUrl = `https://res.cloudinary.com/demo/image/upload/${transformString}/${publicId}`;
+   const generatedUrl = `https://res.cloudinary.com/demo/image/upload/${transformString}/${dPublicId}`;
 
    const handleCopy = (text: string, id: string) => {
       navigator.clipboard.writeText(text);
