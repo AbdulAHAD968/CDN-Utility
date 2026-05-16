@@ -2,14 +2,32 @@
 
 A production-grade internal asset management utility built with Next.js, Cloudinary, and the "Claude" design system.
 
+![Landing Page](public/readme_assets/landing_page.png)
+
 ## Features
 
-- **Multi-Image Upload**: Drag & drop batch uploads with sequential naming.
-- **Smart Naming Engine**: Prefix, folder, padding, and collision prevention presets.
-- **Asset Library**: Clean grid view with search, filters, and lightbox preview.
-- **Transformation Playground**: Visual editor for Cloudinary transforms with real-time snippet generation (HTML, Next.js, MD, CSS).
-- **Secure Architecture**: Server-side signed uploads; Cloudinary secrets never exposed to the client.
-- **Editorial Aesthetics**: Warm cream canvas, coral accents, and serif display typography.
+### Multi-Image Upload
+Drag & drop batch uploads with sequential naming. Optimized with concurrency-limited chunking and batch signature fetching for high performance.
+
+![Upload Interface](public/readme_assets/upload.png)
+
+### Asset Library
+Clean grid view with search, filters, and lightbox preview. Instant access to all your Cloudinary assets with single-click URL copying.
+
+![Asset Library](public/readme_assets/assets.png)
+
+### Transformation Playground
+Visual editor for Cloudinary transforms with real-time snippet generation (HTML, Next.js, MD, CSS). Preview variations instantly.
+
+![Transformation Playground](public/readme_assets/playground.png)
+
+### Smart Naming Engine
+Prefix, folder, padding, and collision prevention presets. Robust 4-character random suffix logic for unique naming.
+
+### Secure Architecture
+Server-side signed uploads; Cloudinary secrets never exposed to the client. Full security hardening with CSP and production headers.
+
+![Security Audit Results](public/readme_assets/security_test.png)
 
 ## Tech Stack
 
