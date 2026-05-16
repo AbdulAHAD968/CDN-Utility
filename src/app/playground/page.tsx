@@ -84,9 +84,9 @@ export default function PlaygroundPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
           
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-6 min-w-0">
             <Card className="bg-canvas border-hairline shadow-none">
                <CardHeader>
                   <CardTitle className="font-serif text-xl flex items-center gap-2">
@@ -207,7 +207,7 @@ export default function PlaygroundPage() {
           </div>
 
           
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-8 min-w-0">
             <div className="bg-surface-dark rounded-2xl overflow-hidden aspect-video flex items-center justify-center relative group">
                <img 
                  src={generatedUrl} 
@@ -228,12 +228,12 @@ export default function PlaygroundPage() {
             </div>
 
             <Tabs defaultValue="nextjs" className="w-full">
-               <div className="flex items-center justify-between mb-4">
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                   <div className="flex items-center gap-2">
                      <Code className="w-5 h-5 text-primary" />
                      <h3 className="font-serif text-xl">Generated Snippets</h3>
                   </div>
-                  <TabsList className="bg-surface-card border border-hairline p-1">
+                  <TabsList className="bg-surface-card border border-hairline p-1 w-full sm:w-auto overflow-x-auto flex-nowrap">
                      <TabsTrigger value="nextjs" className="data-[state=active]:bg-canvas">Next.js</TabsTrigger>
                      <TabsTrigger value="html" className="data-[state=active]:bg-canvas">HTML</TabsTrigger>
                      <TabsTrigger value="markdown" className="data-[state=active]:bg-canvas">Markdown</TabsTrigger>
@@ -244,7 +244,7 @@ export default function PlaygroundPage() {
                {Object.entries(snippets).map(([key, code]) => (
                   <TabsContent key={key} value={key} className="mt-0">
                      <div className="relative group">
-                        <pre className="bg-surface-dark text-on-dark p-6 rounded-xl font-mono text-sm overflow-x-auto border border-surface-dark-elevated">
+                        <pre className="bg-surface-dark text-on-dark p-6 rounded-xl font-mono text-sm overflow-x-auto border border-surface-dark-elevated max-w-full">
                            <code>{code}</code>
                         </pre>
                         <Button 
