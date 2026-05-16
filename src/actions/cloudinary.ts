@@ -87,3 +87,12 @@ export async function getAssets(options: {
     return { success: false, error: "Failed to fetch assets" };
   }
 }
+
+export async function getSystemConfig() {
+  return {
+    cloudName: env.CLOUDINARY_CLOUD_NAME,
+    apiKey: env.CLOUDINARY_API_KEY,
+    maxFileSize: env.MAX_FILE_SIZE_MB,
+    maxBatchSize: env.MAX_BATCH_UPLOAD,
+  };
+}
