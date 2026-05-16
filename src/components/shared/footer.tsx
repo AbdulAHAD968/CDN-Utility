@@ -18,17 +18,42 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="flex items-center gap-12 text-sm font-semibold text-muted">
-           <Link href="/privacy" className="hover:text-primary transition-colors hover:underline underline-offset-8">Privacy Policy</Link>
-           <Link href="/contact" className="hover:text-primary transition-colors hover:underline underline-offset-8">Contact Support</Link>
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-12 text-sm font-semibold text-muted">
+            <Link href="/privacy" className="hover:text-primary transition-colors hover:underline underline-offset-8">Privacy Policy</Link>
+            <Link href="/contact" className="hover:text-primary transition-colors hover:underline underline-offset-8">Contact Support</Link>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            {[
+              { name: "Facebook", href: "https://facebook.com/cdnutility" },
+              { name: "X", href: "https://x.com/cdnutility" },
+              { name: "Instagram", href: "https://instagram.com/cdnutility" },
+              { name: "LinkedIn", href: "https://linkedin.com/company/cdnutility" },
+              { name: "YouTube", href: "https://youtube.com/@cdnutility" }
+            ].map((social) => (
+              <a 
+                key={social.name} 
+                href={social.href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-soft hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-widest"
+              >
+                {social.name}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col items-center md:items-end gap-1">
+        <div className="flex flex-col items-center md:items-end gap-2">
            <div className="text-xs text-muted-soft font-medium">
-              © 2026 Powered by Cloudinary & SevenLab
+              © 2026 Cloudinary Asset Utility. All rights reserved.
            </div>
-           <div className="text-[10px] text-muted-soft/60 italic">
-              Built for high-performance asset management.
+           <div className="text-[10px] text-muted-soft/60 italic text-center md:text-right max-w-[200px]">
+              The professional standard for high-performance asset management.
+           </div>
+           <div className="text-[9px] text-muted-soft/40 uppercase tracking-[0.2em] pt-2">
+              SevenLab HQ • San Francisco, CA
            </div>
         </div>
       </div>

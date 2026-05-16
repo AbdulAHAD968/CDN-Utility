@@ -118,7 +118,69 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        
+        {/* Technical Excellence Section - SEO Content */}
+        <section className="space-y-16 py-12 border-t border-hairline/50">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 order-2 lg:order-1">
+              <h2 className="text-3xl md:text-4xl font-serif text-ink tracking-tight">Built for modern engineering workflows.</h2>
+              <div className="space-y-6 text-muted leading-relaxed">
+                <p>
+                  Our <strong>Cloudinary Asset Utility</strong> is designed to bridge the gap between creative assets and production-ready code. By leveraging the full power of the <strong>Cloudinary CDN</strong>, we ensure that every image is optimized for performance, format, and quality without manual intervention.
+                </p>
+                <p>
+                  Whether you are managing a few assets or a massive <strong>media library</strong>, our tool provides the visibility and control you need. With support for advanced features like <strong>signed uploads</strong>, <strong>automatic cropping</strong>, and <strong>AI-driven optimization</strong>, your team can focus on building great products while we handle the pixels.
+                </p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                  {[
+                    "Lossless WebP/AVIF compression",
+                    "Dynamic URL transformation engine",
+                    "Secure authenticated API access",
+                    "Global edge delivery via CDN",
+                    "Real-time asset synchronization",
+                    "Metadata and tagging automation"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm font-medium text-ink">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="relative order-1 lg:order-2">
+              <div className="aspect-square rounded-[40px] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center p-12 overflow-hidden border border-primary/10">
+                 <div className="w-full h-full rounded-[32px] bg-white shadow-2xl p-8 flex flex-col gap-6">
+                    <div className="flex items-center gap-4 border-b border-hairline pb-4">
+                       <div className="w-3 h-3 rounded-full bg-error/20" />
+                       <div className="w-3 h-3 rounded-full bg-warning/20" />
+                       <div className="w-3 h-3 rounded-full bg-success/20" />
+                       <div className="ml-auto text-[10px] font-mono text-muted uppercase tracking-widest">cdn-transform-engine</div>
+                    </div>
+                    <div className="space-y-3 font-mono text-xs text-muted-soft overflow-hidden">
+                       <div className="text-primary">{"{"}</div>
+                       <div className="pl-4">"cloud_name": "cdnutility",</div>
+                       <div className="pl-4">"transformation": [</div>
+                       <div className="pl-8">{"{"} "quality": "auto" {"}"},</div>
+                       <div className="pl-8">{"{"} "fetch_format": "auto" {"}"},</div>
+                       <div className="pl-8">{"{"} "width": 800, "crop": "scale" {"}"}</div>
+                       <div className="pl-4">]</div>
+                       <div className="text-primary">{"}"}</div>
+                    </div>
+                    <div className="mt-auto h-2 w-full bg-surface-soft rounded-full overflow-hidden">
+                       <motion.div 
+                        animate={{ width: ["0%", "100%"] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        className="h-full bg-primary" 
+                       />
+                    </div>
+                 </div>
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[100px] -z-10" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
         <section className="px-4">
           <div className="bg-ink text-on-dark rounded-[40px] px-6 py-16 md:p-24 text-center space-y-8 relative overflow-hidden">
             <motion.div 

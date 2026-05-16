@@ -1,0 +1,30 @@
+# Cloudinary Asset Utility
+
+An internal powerhouse for Cloudinary asset management, built for high-performance teams.
+
+## Purpose
+Cloudinary Asset Utility is a specialized tool designed to streamline the workflow of managing, optimizing, and delivering media assets via Cloudinary. It focuses on batch uploads, centralized library management, and real-time transformation playgrounds.
+
+## Key Features
+- **Batch Uploads**: Secure signed uploads with automatic folder organization.
+- **Central Library**: Lightning-fast gallery for searching and filtering Cloudinary assets.
+- **Live Playground**: Real-time transformation tweaking and code snippet generation.
+- **Production Ready**: Built with Next.js, Tailwind CSS, and Cloudinary SDK.
+
+## Project Structure
+- `/upload`: Interface for single and batch image uploads.
+- `/assets`: Gallery view for managing existing Cloudinary assets.
+- `/playground`: Interactive tool for testing Cloudinary transformations.
+- `/settings`: Configuration for Cloudinary credentials and utility preferences.
+
+## Technology Stack
+- Frontend: Next.js (App Router), React, Framer Motion, Tailwind CSS.
+- Storage/Media: Cloudinary.
+- Icons: Lucide React.
+- UI Components: Radix UI / Shadcn UI.
+
+## Links
+- [Main Website](https://cdnutility.vercel.app)
+- [Upload Assets](https://cdnutility.vercel.app/upload)
+- [Browse Library](https://cdnutility.vercel.app/assets)
+- [Transformation Playground](https://cdnutility.vercel.app/playground)

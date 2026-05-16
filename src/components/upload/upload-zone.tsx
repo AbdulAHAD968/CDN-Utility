@@ -103,8 +103,8 @@ export function UploadZone() {
                   <div className="space-y-2">
                     <div className="h-1 w-full bg-surface-soft rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-primary transition-all duration-300"
-                        style={{ width: `${item.progress}%` }}
+                        className="h-full bg-primary transition-all duration-300 w-[var(--progress)]"
+                        style={{ "--progress": `${item.progress}%` } as React.CSSProperties}
                       />
                     </div>
                     <p className="text-[10px] text-muted text-right uppercase tracking-wider">
