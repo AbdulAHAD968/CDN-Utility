@@ -41,19 +41,19 @@ export default function DashboardPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
               <Link href="/upload" className="w-full sm:w-auto">
-                <Button size="lg" className="button-primary h-14 px-8 text-lg w-full sm:w-auto rounded-2xl shadow-xl shadow-primary/10 hover:scale-105 transition-transform">
+                <Button size="lg" aria-label="Start Uploading Assets" className="button-primary h-14 px-8 text-lg w-full sm:w-auto rounded-2xl shadow-xl shadow-primary/10 hover:scale-105 transition-transform">
                   Start Uploading
                   <Upload className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/assets" className="text-ink font-semibold hover:underline underline-offset-8 flex items-center gap-2 group transition-all">
+              <Link href="/assets" aria-label="Browse Asset Library" className="text-ink font-semibold hover:underline underline-offset-8 flex items-center gap-2 group transition-all">
                 Browse Library
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>
 
-          <div className="relative h-[400px] md:h-[500px] w-full flex items-center justify-center">
+          <div className="relative h-[500px] md:h-[600px] w-full flex items-center justify-center mt-12 lg:mt-0">
             <div className="absolute inset-0 bg-primary/5 blur-3xl -z-10 rounded-full scale-110" />
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 rotate-[-2deg] scale-95 md:scale-100">

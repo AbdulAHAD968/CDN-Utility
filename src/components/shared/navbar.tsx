@@ -62,6 +62,7 @@ export function Navbar() {
       <div className="flex-1 flex items-center justify-end gap-2 md:gap-4">
         <Link
           href="/settings"
+          aria-label="Settings"
           className={cn(
             "p-2.5 rounded-full transition-colors",
             pathname === "/settings"
@@ -75,6 +76,7 @@ export function Navbar() {
         
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className="md:hidden p-2.5 rounded-full text-ink hover:bg-surface-soft transition-colors"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

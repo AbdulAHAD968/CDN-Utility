@@ -18,13 +18,25 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-12 text-sm font-semibold text-muted">
-            <Link href="/privacy" className="hover:text-primary transition-colors hover:underline underline-offset-8">Privacy Policy</Link>
-            <Link href="/contact" className="hover:text-primary transition-colors hover:underline underline-offset-8">Contact Support</Link>
+        <div className="flex flex-col items-center md:items-start gap-8">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-12 text-sm font-semibold text-muted">
+            <Link 
+              href="/privacy" 
+              className="hover:text-primary transition-colors hover:underline underline-offset-8"
+              aria-label="Privacy Policy"
+            >
+              Privacy Policy
+            </Link>
+            <Link 
+              href="/contact" 
+              className="hover:text-primary transition-colors hover:underline underline-offset-8"
+              aria-label="Contact Support"
+            >
+              Contact Support
+            </Link>
           </div>
           
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-6">
             {[
               { name: "YouTube", href: "https://www.youtube.com/@SevenLabSolutions" },
               { name: "GitHub", href: "https://github.com/Seven-Lab-Solutions" },
@@ -37,7 +49,8 @@ export function Footer() {
                 href={social.href} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-muted-soft hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-widest"
+                aria-label={`Follow us on ${social.name}`}
+                className="text-muted-soft hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-widest p-2"
               >
                 {social.name}
               </a>
