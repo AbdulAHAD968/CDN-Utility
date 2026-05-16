@@ -37,7 +37,7 @@ export function generateSequentialNames(
       let finalName = shouldSlugify ? slugify(fileName) : fileName;
       
       if (randomSuffix) {
-        const suffix = Math.random().toString(36).substring(2, 6);
+        const suffix = Math.random().toString(36).substring(2, 6).padEnd(4, "0");
         finalName = `${finalName}_${suffix}`;
       }
       
@@ -50,7 +50,7 @@ export function generateSequentialNames(
     let name = `${prefix}_${paddedNumber}`;
     
     if (randomSuffix) {
-      const suffix = Math.random().toString(36).substring(2, 6);
+      const suffix = Math.random().toString(36).substring(2, 6).padEnd(4, "0");
       name = `${name}_${suffix}`;
     }
 

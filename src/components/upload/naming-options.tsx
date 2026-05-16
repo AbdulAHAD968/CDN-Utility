@@ -146,7 +146,7 @@ export function NamingOptionsForm({ onChange }: NamingOptionsProps) {
           <p className="font-mono text-sm text-primary">
             {form.watch("folder")}/{form.watch("prefix")}_
             {form.watch("startingNumber").toString().padStart(form.watch("padding"), "0")}
-            {form.watch("randomSuffix") ? "_a7b2" : ""}.png
+            {form.watch("randomSuffix") ? `_${Math.random().toString(36).substring(2, 6)}` : ""}.png
           </p>
         </div>
       </CardContent>
