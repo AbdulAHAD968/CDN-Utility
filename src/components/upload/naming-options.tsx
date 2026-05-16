@@ -103,37 +103,40 @@ export function NamingOptionsForm({ onChange }: NamingOptionsProps) {
           </div>
         </div>
 
-        <div className="space-y-4 pt-4 border-t border-hairline">
-          <div className="flex items-center justify-between">
+        <div className="space-y-1 pt-4 border-t border-hairline">
+          <div className="flex items-center justify-between p-3 rounded-xl hover:bg-surface-soft transition-colors cursor-pointer group" onClick={() => form.setValue("preserveOriginal", !form.getValues("preserveOriginal"))}>
             <div className="space-y-0.5">
-              <Label>Preserve Original Names</Label>
+              <Label className="text-ink group-hover:text-primary transition-colors cursor-pointer">Preserve Original Names</Label>
               <p className="text-xs text-muted">Use original filenames instead of sequential numbering.</p>
             </div>
             <Switch 
               checked={form.watch("preserveOriginal")}
               onCheckedChange={(val) => form.setValue("preserveOriginal", val)}
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between p-3 rounded-xl hover:bg-surface-soft transition-colors cursor-pointer group" onClick={() => form.setValue("slugify", !form.getValues("slugify"))}>
             <div className="space-y-0.5">
-              <Label>Slugify Names</Label>
+              <Label className="text-ink group-hover:text-primary transition-colors cursor-pointer">Slugify Names</Label>
               <p className="text-xs text-muted">Remove spaces and special characters for web safety.</p>
             </div>
             <Switch 
               checked={form.watch("slugify")}
               onCheckedChange={(val) => form.setValue("slugify", val)}
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between p-3 rounded-xl hover:bg-surface-soft transition-colors cursor-pointer group" onClick={() => form.setValue("randomSuffix", !form.getValues("randomSuffix"))}>
             <div className="space-y-0.5">
-              <Label>Random Suffix</Label>
+              <Label className="text-ink group-hover:text-primary transition-colors cursor-pointer">Random Suffix</Label>
               <p className="text-xs text-muted">Add a 4-char random string to avoid collisions.</p>
             </div>
             <Switch 
               checked={form.watch("randomSuffix")}
               onCheckedChange={(val) => form.setValue("randomSuffix", val)}
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
         </div>
