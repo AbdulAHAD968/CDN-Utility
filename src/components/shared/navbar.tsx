@@ -21,7 +21,7 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-[100] w-full border-b border-hairline bg-canvas/80 backdrop-blur-md px-4 md:px-10 py-4 flex items-center justify-between h-16 md:h-20">
       
-      {/* Brand */}
+      
       <div className="flex-1 flex items-center">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden flex items-center justify-center bg-surface-soft shadow-sm border border-hairline group-hover:scale-110 transition-transform">
@@ -35,7 +35,7 @@ export function Navbar() {
         </Link>
       </div>
 
-      {/* Desktop Middle Navigation */}
+      
       <div className="hidden md:flex items-center gap-1 bg-surface-soft/50 p-1.5 rounded-full border border-hairline">
         {middleNavItems.map((item) => {
           const Icon = item.icon;
@@ -58,7 +58,7 @@ export function Navbar() {
         })}
       </div>
 
-      {/* Right Actions */}
+      
       <div className="flex-1 flex items-center justify-end gap-2 md:gap-4">
         <Link
           href="/settings"
@@ -72,7 +72,7 @@ export function Navbar() {
           <Settings className="w-5 h-5" />
         </Link>
         
-        {/* Mobile Toggle */}
+        
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2.5 rounded-full text-ink hover:bg-surface-soft transition-colors"
@@ -81,7 +81,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

@@ -23,7 +23,7 @@ export default function SettingsPage() {
     autoOptimize: true,
   });
 
-  // Load config and localStorage on mount
+  
   useEffect(() => {
     async function init() {
       try {
@@ -80,7 +80,7 @@ export default function SettingsPage() {
         </div>
 
         <div className="grid gap-8">
-          {/* Environment Section (Read Only) */}
+          
           <Card className="bg-canvas border-hairline shadow-none">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
@@ -117,7 +117,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-          {/* User Preferences Section */}
+          
           <Card className="bg-canvas border-hairline shadow-none">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
@@ -151,7 +151,7 @@ export default function SettingsPage() {
               </div>
 
               <div className="space-y-1 pt-4 border-t border-hairline">
-                {/* Force HTTPS */}
+                
                 <div
                   className="flex items-center justify-between p-4 rounded-2xl hover:bg-surface-soft transition-all cursor-pointer group"
                   onClick={() => updatePref("forceHttps", !preferences.forceHttps)}
@@ -167,7 +167,7 @@ export default function SettingsPage() {
                   />
                 </div>
 
-                {/* Auto-Optimization */}
+                
                 <div
                   className="flex items-center justify-between p-4 rounded-2xl hover:bg-surface-soft transition-all cursor-pointer group"
                   onClick={() => updatePref("autoOptimize", !preferences.autoOptimize)}

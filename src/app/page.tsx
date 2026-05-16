@@ -24,7 +24,7 @@ export default function DashboardPage() {
 
       <main className="flex-1 container max-w-7xl mx-auto px-6 py-12 md:py-16 space-y-24 md:space-y-32">
 
-        {/* Hero Section */}
+        
         <section className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Core Steps Section */}
+        
         <section className="space-y-16">
           <div className="text-center space-y-4 max-w-2xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-serif text-ink tracking-tight">The smarter way to manage assets.</h2>
@@ -118,7 +118,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        
         <section className="px-4">
           <div className="bg-ink text-on-dark rounded-[40px] px-6 py-16 md:p-24 text-center space-y-8 relative overflow-hidden">
             <motion.div 
