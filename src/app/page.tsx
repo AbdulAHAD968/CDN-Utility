@@ -25,38 +25,38 @@ export default function DashboardPage() {
       <main className="flex-1 container max-w-7xl mx-auto px-6 py-12 md:py-16 space-y-24 md:space-y-32">
 
 
-        <section className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-12 items-center pb-24 lg:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-8 text-center lg:text-left relative z-10"
+            className="space-y-8 text-center lg:text-left relative z-[50] mb-16 lg:mb-0"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] tracking-tight text-ink">
+            <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] tracking-tight text-ink">
               Your photos,<br />
               <span className="text-primary">ready for the web.</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-muted leading-relaxed max-w-lg mx-auto lg:mx-0 px-4 sm:px-0">
               Upload, optimize, and organize your images in one seamless flow. Professional delivery for modern teams.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-4">
               <Link href="/upload" className="w-full sm:w-auto">
                 <Button size="lg" aria-label="Start Uploading Assets" className="button-primary h-14 px-8 text-lg w-full sm:w-auto rounded-2xl shadow-xl shadow-primary/10 hover:scale-105 transition-transform">
                   Start Uploading
                   <Upload className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/assets" aria-label="Browse Asset Library" className="text-ink font-semibold hover:underline underline-offset-8 flex items-center gap-2 group transition-all">
+              <Link href="/assets" aria-label="Browse Asset Library" className="text-ink font-semibold hover:underline underline-offset-8 flex items-center gap-2 group transition-all p-2 z-[60]">
                 Browse Library
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>
 
-          <div className="relative h-[500px] md:h-[600px] w-full flex items-center justify-center mt-12 lg:mt-0">
+          <div className="relative w-full flex items-center justify-center mt-8 lg:mt-0 min-h-[500px] lg:min-h-0 py-8 lg:py-0">
             <div className="absolute inset-0 bg-primary/5 blur-3xl -z-10 rounded-full scale-110" />
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 rotate-[-2deg] scale-95 md:scale-100">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 rotate-[-2deg] scale-80 xs:scale-85 sm:scale-95 md:scale-100 origin-center">
               {ILLUSTRATIONS.map((src, i) => (
                 <motion.div
                   key={src}
@@ -72,8 +72,8 @@ export default function DashboardPage() {
                     y: { duration: 6 + i, repeat: Infinity, ease: "easeInOut" },
                   }}
                   className={cn(
-                    "rounded-[20px] overflow-hidden shadow-xl border-4 border-white backdrop-blur-sm transform transition-all hover:scale-110 hover:z-30 duration-500 bg-white/50",
-                    i % 3 === 1 ? "translate-y-8" : i % 3 === 2 ? "-translate-y-8" : ""
+                    "rounded-[16px] xs:rounded-[20px] overflow-hidden shadow-xl border-4 border-white backdrop-blur-sm transform transition-all hover:scale-110 hover:z-30 duration-500 bg-white/50",
+                    i % 3 === 1 ? "translate-y-6" : i % 3 === 2 ? "-translate-y-6" : ""
                   )}
                 >
                   <img src={src} alt="Sample" className="w-full h-full object-cover aspect-[3/4]" />
@@ -84,8 +84,8 @@ export default function DashboardPage() {
         </section>
 
 
-        <section className="space-y-16">
-          <div className="text-center space-y-4 max-w-2xl mx-auto px-4">
+        <section className="space-y-16 pt-16 lg:pt-0 border-t border-hairline lg:border-none">
+          <div className="text-center space-y-4 max-w-2xl mx-auto px-4 mt-12 lg:mt-0">
             <h2 className="text-3xl md:text-4xl font-serif text-ink tracking-tight">The smarter way to manage assets.</h2>
             <p className="text-muted text-lg leading-relaxed">Everything you need to go from a RAW file to a production-ready URL in seconds.</p>
           </div>
