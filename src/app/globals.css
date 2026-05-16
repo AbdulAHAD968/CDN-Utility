@@ -125,6 +125,31 @@
     @apply font-serif font-normal tracking-tight;
     letter-spacing: -0.02em;
   }
+
+  /* Selection & Scrollbar Styling */
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-canvas);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-hairline);
+    border-radius: 10px;
+    border: 2px solid var(--color-canvas);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
 }
 
 @layer components {
