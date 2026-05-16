@@ -8,9 +8,11 @@ import { useUploadStore } from "@/store/use-upload-store";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
+import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 
 export function UploadZone() {
-  const { addToQueue, queue, removeFromQueue, isUploading } = useUploadStore();
+  const { addToQueue, queue, removeFromQueue, isUploading, clearQueue } = useUploadStore();
+  const [clearConfirmOpen, setClearConfirmOpen] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     addToQueue(acceptedFiles);
@@ -64,7 +66,7 @@ export function UploadZone() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => useUploadStore.getState().clearQueue()}
+              onClick={() => setClearConfirmOpen(true)}
               className="text-error hover:text-error hover:bg-error/10"
             >
               Clear All
@@ -129,6 +131,15 @@ export function UploadZone() {
           </div>
         </div>
       )}
+      <ConfirmationDialog
+        open={clearConfirmOpen}
+        onOpenChange={setClearConfirmOpen}
+        onConfirm={clearQueue}
+        title="Clear Queue"
+        description="Are you sure you want to remove all files from the upload queue?"
+        confirmText="Clear All"
+        variant="destructive"
+      />
     </div>
   );
 }

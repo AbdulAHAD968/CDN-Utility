@@ -31,7 +31,7 @@ export function NamingOptionsForm({ onChange }: NamingOptionsProps) {
     resolver: zodResolver(namingSchema),
     defaultValues: {
       prefix: "img",
-      folder: "marketing",
+      folder: "media",
       startingNumber: 1,
       padding: 2,
       preserveOriginal: false,

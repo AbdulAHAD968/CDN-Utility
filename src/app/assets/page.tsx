@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Navbar } from "@/components/shared/navbar";
 import { getAssets, deleteAsset } from "@/actions/cloudinary";
 import { Button } from "@/components/ui/button";
+import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { Input } from "@/components/ui/input";
 import {
   Search,
@@ -30,6 +31,8 @@ export default function AssetsPage() {
   const [search, setSearch] = useState("");
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
 
   const fetchAssets = useCallback(async (cursor?: string) => {
     setLoading(true);
@@ -51,16 +54,22 @@ export default function AssetsPage() {
     fetchAssets();
   }, [fetchAssets]);
 
-  const handleDelete = async (publicId: string) => {
-    if (!confirm("Are you sure you want to delete this asset?")) return;
+  const handleDelete = (publicId: string) => {
+    setAssetToDelete(publicId);
+    setDeleteConfirmOpen(true);
+  };
 
-    const result = await deleteAsset(publicId);
+  const confirmDelete = async () => {
+    if (!assetToDelete) return;
+    
+    const result = await deleteAsset(assetToDelete);
     if (result.success) {
-      setAssets(prev => prev.filter(a => a.public_id !== publicId));
+      setAssets(prev => prev.filter(a => a.public_id !== assetToDelete));
       toast.success("Asset deleted");
     } else {
       toast.error(result.error);
     }
+    setAssetToDelete(null);
   };
 
   const copyToClipboard = (text: string) => {
@@ -275,6 +284,15 @@ export default function AssetsPage() {
             )}
           </DialogContent>
         </Dialog>
+        <ConfirmationDialog
+          open={deleteConfirmOpen}
+          onOpenChange={setDeleteConfirmOpen}
+          onConfirm={confirmDelete}
+          title="Delete Asset"
+          description="Are you sure you want to delete this asset? This action cannot be undone and will remove the file from Cloudinary."
+          confirmText="Delete Asset"
+          variant="destructive"
+        />
       </main>
     </div>
   );
