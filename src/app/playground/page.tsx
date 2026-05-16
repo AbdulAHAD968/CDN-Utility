@@ -214,14 +214,14 @@ export default function PlaygroundPage() {
                  alt="Playground Preview" 
                  className="max-w-full max-h-full object-contain transition-transform duration-500"
                />
-               <div className="absolute top-4 right-4 bg-ink/60 text-on-dark text-xs px-3 py-1.5 rounded-full backdrop-blur-md">
+               <div className="absolute top-4 right-4 bg-ink/80 text-on-dark text-xs px-3 py-1.5 rounded-full backdrop-blur-lg border border-white/10">
                   Preview Mode
                </div>
                <a 
                  href={generatedUrl} 
                  target="_blank" 
                  rel="noreferrer"
-                 className="absolute bottom-4 left-4 p-2 bg-canvas/10 hover:bg-canvas/20 rounded-full text-on-dark transition-colors opacity-0 group-hover:opacity-100"
+                 className="absolute bottom-4 left-4 p-2 bg-white/20 hover:bg-white/30 rounded-full text-on-dark transition-colors opacity-0 group-hover:opacity-100 backdrop-blur-md border border-white/10"
                >
                   <ExternalLink className="w-4 h-4" />
                </a>

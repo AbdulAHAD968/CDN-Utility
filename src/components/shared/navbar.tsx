@@ -17,13 +17,13 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-hairline bg-canvas px-6 py-4 flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-50 w-full border-b border-hairline bg-canvas px-10 py-4 flex items-center justify-between h-16">
       <div className="flex items-center gap-8">
         <Link href="/" className="flex items-center gap-2">
-          
+
           <div className="w-5 h-5 bg-ink rotate-45 flex items-center justify-center">
-             <div className="w-1 h-3 bg-canvas absolute rotate-90" />
-             <div className="w-1 h-3 bg-canvas absolute" />
+            <div className="w-1 h-3 bg-canvas absolute rotate-90" />
+            <div className="w-1 h-3 bg-canvas absolute" />
           </div>
           <span className="font-serif text-xl font-medium tracking-tight">CDN Utility</span>
         </Link>
@@ -38,8 +38,8 @@ export function Navbar() {
                 href={item.href}
                 className={cn(
                   "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors",
-                  isActive 
-                    ? "bg-surface-card text-ink" 
+                  isActive
+                    ? "bg-surface-card text-ink"
                     : "text-muted hover:text-ink hover:bg-surface-soft"
                 )}
               >
@@ -53,18 +53,15 @@ export function Navbar() {
 
       <div className="flex items-center gap-4">
         <Link href="/upload">
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
             className="border-hairline text-muted hover:text-ink"
           >
-             <Upload className="w-4 h-4 mr-2" />
-             Upload
+            <Upload className="w-4 h-4 mr-2" />
+            Upload
           </Button>
         </Link>
-        <div className="w-8 h-8 rounded-full bg-surface-card border border-hairline flex items-center justify-center text-xs font-bold text-muted-soft">
-          AU
-        </div>
       </div>
     </nav>
   );

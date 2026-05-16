@@ -55,11 +55,64 @@
   :root {
     --background: var(--color-canvas);
     --foreground: var(--color-ink);
+    
+    --card: var(--color-surface-card);
+    --card-foreground: var(--color-ink);
+    
+    /* Make popover more solid and distinct */
+    --popover: #ffffff; 
+    --popover-foreground: var(--color-ink);
+    
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-on-primary);
+    
+    --secondary: var(--color-surface-soft);
+    --secondary-foreground: var(--color-ink);
+    
+    --muted: var(--color-surface-soft);
+    --muted-foreground: var(--color-muted);
+    
+    --accent: var(--color-surface-soft);
+    --accent-foreground: var(--color-ink);
+    
+    --destructive: var(--color-error);
+    --destructive-foreground: var(--color-on-primary);
+    
+    --border: var(--color-hairline);
+    --input: var(--color-surface-cream-strong);
+    --ring: var(--color-primary);
+    
+    --radius: 0.5rem;
   }
 
   .dark {
     --background: var(--color-surface-dark);
     --foreground: var(--color-on-dark);
+    
+    --card: var(--color-surface-dark-soft);
+    --card-foreground: var(--color-on-dark);
+    
+    --popover: var(--color-surface-dark-elevated);
+    --popover-foreground: var(--color-on-dark);
+    
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-on-primary);
+    
+    --secondary: var(--color-surface-dark-elevated);
+    --secondary-foreground: var(--color-on-dark);
+    
+    --muted: var(--color-surface-dark-soft);
+    --muted-foreground: var(--color-on-dark-soft);
+    
+    --accent: var(--color-surface-dark-soft);
+    --accent-foreground: var(--color-on-dark);
+    
+    --destructive: var(--color-error);
+    --destructive-foreground: var(--color-on-primary);
+    
+    --border: var(--color-surface-dark-elevated);
+    --input: var(--color-surface-dark-elevated);
+    --ring: var(--color-primary);
   }
 
   body {
@@ -70,7 +123,6 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal tracking-tight;
-    /* Apply negative tracking for the "Copernicus" look */
     letter-spacing: -0.02em;
   }
 }

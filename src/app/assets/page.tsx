@@ -132,7 +132,7 @@ export default function AssetsPage() {
                       alt={asset.public_id}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 gap-2">
+                    <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/60 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 gap-2 backdrop-blur-[2px]">
                        <Button 
                          size="icon" 
                          variant="secondary" 
