@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Upload, X, FileImage, Loader2 } from "lucide-react";
 import { useUploadStore } from "@/store/use-upload-store";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress"; 
+import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 
 export function UploadZone() {
@@ -33,10 +33,10 @@ export function UploadZone() {
       <div
         {...getRootProps()}
         className={cn(
-          "relative group cursor-pointer border-2 border-dashed rounded-xl p-12 transition-all duration-200",
+          "relative group cursor-pointer border-2 border-dashed rounded-md p-12 transition-all duration-200",
           "flex flex-col items-center justify-center gap-4 text-center",
-          isDragActive 
-            ? "border-primary bg-primary/5 scale-[1.01]" 
+          isDragActive
+            ? "border-primary bg-primary/5 scale-[1.01]"
             : "border-hairline hover:border-primary/50 hover:bg-surface-soft"
         )}
       >
@@ -61,27 +61,27 @@ export function UploadZone() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-serif text-2xl">Upload Queue ({queue.length})</h3>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => useUploadStore.getState().clearQueue()}
               className="text-error hover:text-error hover:bg-error/10"
             >
               Clear All
             </Button>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {queue.map((item) => (
-              <div 
-                key={item.id} 
+              <div
+                key={item.id}
                 className="group relative bg-surface-card rounded-lg overflow-hidden border border-hairline p-4 space-y-3"
               >
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16 rounded-md overflow-hidden bg-canvas border border-hairline shrink-0">
-                    <img 
-                      src={item.preview} 
-                      alt="Preview" 
+                    <img
+                      src={item.preview}
+                      alt="Preview"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -100,17 +100,17 @@ export function UploadZone() {
                 </div>
 
                 {item.status === "uploading" && (
-                   <div className="space-y-2">
-                      <div className="h-1 w-full bg-surface-soft rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-primary transition-all duration-300" 
-                          style={{ width: `${item.progress}%` }}
-                        />
-                      </div>
-                      <p className="text-[10px] text-muted text-right uppercase tracking-wider">
-                        Uploading... {item.progress}%
-                      </p>
-                   </div>
+                  <div className="space-y-2">
+                    <div className="h-1 w-full bg-surface-soft rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-primary transition-all duration-300"
+                        style={{ width: `${item.progress}%` }}
+                      />
+                    </div>
+                    <p className="text-[10px] text-muted text-right uppercase tracking-wider">
+                      Uploading... {item.progress}%
+                    </p>
+                  </div>
                 )}
 
                 {item.status === "success" && (
