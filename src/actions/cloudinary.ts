@@ -38,7 +38,7 @@ export async function deleteAsset(publicId: string) {
 export async function renameAsset(publicId: string, newName: string) {
   try {
     // Cloudinary rename actually moves/copies the asset
-    // We need to keep the folder structure if present
+    
     const parts = publicId.split("/");
     parts[parts.length - 1] = newName;
     const newPublicId = parts.join("/");

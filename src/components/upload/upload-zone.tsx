@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Upload, X, FileImage, Loader2 } from "lucide-react";
 import { useUploadStore } from "@/store/use-upload-store";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress"; // Wait, I didn't add progress
+import { Progress } from "@/components/ui/progress"; 
 import { toast } from "sonner";
 
 export function UploadZone() {

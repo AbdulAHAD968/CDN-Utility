@@ -10,7 +10,7 @@ export default function DashboardPage() {
       <Navbar />
       
       <main className="flex-1 container max-w-7xl mx-auto px-6 py-12 space-y-12">
-        {/* Hero Section */}
+        
         <section className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-6xl font-serif leading-[1.1] tracking-tight">
@@ -58,7 +58,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Feature Grid */}
+        
         <section className="grid md:grid-cols-3 gap-8">
           <Card className="bg-surface-card border-none shadow-none">
             <CardHeader>

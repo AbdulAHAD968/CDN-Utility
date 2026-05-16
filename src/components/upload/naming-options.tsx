@@ -40,12 +40,12 @@ export function NamingOptionsForm({ onChange }: NamingOptionsProps) {
     },
   });
 
-  // Watch for changes and propagate to parent
+  
   const values = form.watch();
   
-  // Update parent whenever values change
-  // In a real app, you might debounce this or use a button
-  // For simplicity, we'll use a useEffect in the parent or just watch here
+  
+  
+  
   
   return (
     <Card className="bg-canvas border-hairline shadow-none">

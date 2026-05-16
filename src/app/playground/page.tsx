@@ -14,8 +14,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop";
-// Use a real Cloudinary sample for demo if needed, but for playground we usually start with an asset
-// For now, let's use a dummy publicId
+
+
 const DEFAULT_ASSET = "samples/balloons";
 
 export default function PlaygroundPage() {
@@ -85,7 +85,7 @@ export default function PlaygroundPage() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          {/* Controls Sidebar */}
+          
           <div className="lg:col-span-4 space-y-6">
             <Card className="bg-canvas border-hairline shadow-none">
                <CardHeader>
@@ -206,7 +206,7 @@ export default function PlaygroundPage() {
             </Button>
           </div>
 
-          {/* Preview & Code */}
+          
           <div className="lg:col-span-8 space-y-8">
             <div className="bg-surface-dark rounded-2xl overflow-hidden aspect-video flex items-center justify-center relative group">
                <img 

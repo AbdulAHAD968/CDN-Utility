@@ -215,7 +215,7 @@ export default function AssetsPage() {
           </div>
         )}
 
-        {/* Lightbox Dialog */}
+        
         <Dialog open={!!selectedAsset} onOpenChange={() => setSelectedAsset(null)}>
            <DialogContent className="max-w-5xl bg-surface-dark border-surface-dark-elevated text-on-dark p-0 overflow-hidden shadow-2xl">
               {selectedAsset && (

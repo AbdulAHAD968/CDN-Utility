@@ -33,7 +33,7 @@ export default function UploadPage() {
     const names = generateSequentialNames(queue.map(i => i.file), namingOptions);
     
     try {
-      // 1. Get signature once per batch (or per file if needed, but per batch is fine for same folder)
+      
       const sigData = await getUploadSignature(namingOptions.folder);
       
       const uploadPromises = queue.map(async (item, index) => {

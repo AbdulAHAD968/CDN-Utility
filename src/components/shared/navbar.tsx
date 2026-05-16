@@ -20,7 +20,7 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-hairline bg-canvas px-6 py-4 flex items-center justify-between h-16">
       <div className="flex items-center gap-8">
         <Link href="/" className="flex items-center gap-2">
-          {/* Anthropic spike-mark representation */}
+          
           <div className="w-5 h-5 bg-ink rotate-45 flex items-center justify-center">
              <div className="w-1 h-3 bg-canvas absolute rotate-90" />
              <div className="w-1 h-3 bg-canvas absolute" />
