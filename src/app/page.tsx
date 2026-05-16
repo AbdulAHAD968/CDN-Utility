@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/shared/navbar";
+import { Footer } from "@/components/shared/footer";
 import { Button } from "@/components/ui/button";
 import { Upload, LayoutGrid, Sliders, ArrowRight } from "lucide-react";
 import Link from "next/link";
