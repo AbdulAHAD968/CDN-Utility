@@ -23,6 +23,9 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Cloudinary Asset Utility | Internal",
   description: "Internal team utility for Cloudinary asset management.",
+  icons: {
+    icon: "https://res.cloudinary.com/dywx7ldqr/image/upload/v1778916228/marketing/img_01.png",
+  },
 };
 
 import { TooltipProvider } from "@/components/ui/tooltip";

@@ -20,9 +20,12 @@ export function Navbar() {
       
       <div className="flex-1 flex items-center">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-ink rotate-45 flex items-center justify-center">
-            <div className="w-1 h-3 bg-canvas absolute rotate-90" />
-            <div className="w-1 h-3 bg-canvas absolute" />
+          <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-surface-soft shadow-sm border border-hairline">
+             <img 
+               src="https://res.cloudinary.com/dywx7ldqr/image/upload/v1778916228/marketing/img_01.png" 
+               alt="CDN Logo" 
+               className="w-full h-full object-contain"
+             />
           </div>
           <span className="font-serif text-xl font-medium tracking-tight">CDN Utility</span>
         </Link>
