@@ -34,12 +34,13 @@ export default function UploadPage() {
     
     try {
       
-      const sigData = await getUploadSignature(namingOptions.folder);
-      
       const uploadPromises = queue.map(async (item, index) => {
         if (item.status === "success") return;
         
         updateStatus(item.id, "uploading");
+        
+        const publicId = names[index];
+        const sigData = await getUploadSignature(namingOptions.folder, publicId);
         
         const formData = new FormData();
         formData.append("file", item.file);
@@ -47,7 +48,9 @@ export default function UploadPage() {
         formData.append("timestamp", sigData.timestamp.toString());
         formData.append("signature", sigData.signature);
         formData.append("folder", sigData.folder);
-        formData.append("public_id", names[index]);
+        if (sigData.publicId) {
+          formData.append("public_id", sigData.publicId);
+        }
 
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
