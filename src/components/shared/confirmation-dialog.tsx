@@ -93,7 +93,7 @@ export function ConfirmationDialog({
               : { opacity: 1, y: 0 }
             }
             transition={shake 
-              ? { duration: 0.4, type: "spring", stiffness: 400, damping: 15 } 
+              ? { duration: 0.4, ease: "linear" } 
               : { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
             }
             className="flex flex-col items-center text-center space-y-6 relative z-10"

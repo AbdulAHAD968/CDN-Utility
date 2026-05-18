@@ -49,52 +49,42 @@ try {
   process.exit(1);
 }
 
-// Gorgeous High-End Sample Datasets from Unsplash
+// Official Cloudinary Demo Sample Assets
 const samples = [
   {
-    name: 'samples/minimalist_villa',
-    url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600',
-    description: 'Minimalist Architecture - Luxury Modern Villa'
+    name: 'samples/cld-sample',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/cld-sample.jpg',
+    description: 'Official Cloudinary Sample - The Dog Portrait'
   },
   {
-    name: 'samples/sunset_horizon',
-    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600',
-    description: 'Dreamy Sunset Horizon on a Serene Tropical Beach'
+    name: 'samples/cld-sample-2',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/cld-sample-2.jpg',
+    description: 'Official Cloudinary Sample - Mountain and Lake Landscape'
   },
   {
-    name: 'samples/editorial_portrait',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1600',
-    description: 'High-End Editorial Portrait Photography'
+    name: 'samples/cld-sample-3',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/cld-sample-3.jpg',
+    description: 'Official Cloudinary Sample - Desert Scene / Couple portrait'
   },
   {
-    name: 'samples/neon_cyberpunk',
-    url: 'https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=1600',
-    description: 'Cyberpunk Aesthetic - Tokyo Neon Streets'
+    name: 'samples/cld-sample-4',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/cld-sample-4.jpg',
+    description: 'Official Cloudinary Sample - Food / Kitchen Setup'
   },
   {
-    name: 'samples/cozy_workspace',
-    url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600',
-    description: 'Minimalist Cozy Creative Desk Setup'
+    name: 'samples/cld-sample-5',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/cld-sample-5.jpg',
+    description: 'Official Cloudinary Sample - Sneaker Product Showcase'
   },
   {
-    name: 'samples/premium_chronometer',
-    url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1600',
-    description: 'Minimalist Luxury Product Chronometer'
-  },
-  {
-    name: 'samples/liquid_abstract',
-    url: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1600',
-    description: 'Abstract Contemporary Fluid Liquid Painting'
-  },
-  {
-    name: 'samples/enchanted_forest',
-    url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600',
-    description: 'Sunbeams Breaking Through Deep Enchanted Woods'
+    name: 'samples/sample',
+    url: 'https://res.cloudinary.com/demo/image/upload/v1/sample.jpg',
+    description: 'Official Cloudinary Sample - Yellow Flowers with Bee'
   }
 ];
 
 async function seed() {
-  console.log(`Starting to upload ${samples.length} beautiful assets to Cloudinary...`);
+  console.log(`Starting to upload ${samples.length} official Cloudinary demo samples to your account...`);
   
   for (let i = 0; i < samples.length; i++) {
     const sample = samples[i];
@@ -115,7 +105,7 @@ async function seed() {
     }
   }
   
-  console.log('\nAll sample assets successfully seeded! Check your gallery.');
+  console.log('\nAll official Cloudinary sample assets successfully seeded! Check your gallery.');
 }
 
 seed();
