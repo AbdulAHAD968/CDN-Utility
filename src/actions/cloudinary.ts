@@ -56,7 +56,13 @@ export async function getBatchUploadSignatures(folder: string, publicIds: string
   });
 }
 
-export async function deleteAsset(publicId: string) {
+export async function deleteAsset(publicId: string, passphrase?: string) {
+  const envPassphrase = process.env.CLOUDINARY_DELETE_PASSPHRASE || "sevenlab";
+  
+  if (!passphrase || passphrase !== envPassphrase) {
+    return { success: false, error: "Incorrect passphrase. Deletion denied." };
+  }
+
   try {
     const result = await cloudinary.uploader.destroy(publicId);
     return { success: true, result };

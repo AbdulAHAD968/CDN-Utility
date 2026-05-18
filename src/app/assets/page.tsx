@@ -33,6 +33,8 @@ export default function AssetsPage() {
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [assetToDelete, setAssetToDelete] = useState<string | null>(null);
+  const [savedPassphrase, setSavedPassphrase] = useState("");
+  const [autoFill, setAutoFill] = useState(false);
 
   const fetchAssets = useCallback(async (cursor?: string) => {
     setLoading(true);
@@ -52,24 +54,43 @@ export default function AssetsPage() {
 
   useEffect(() => {
     fetchAssets();
-  }, [fetchAssets]);
+
+    // Load saved preferences to check for delete passphrase
+    try {
+      const saved = localStorage.getItem("cdn_utility_settings");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.rememberPassphrase && parsed.deletePassphrase) {
+          setSavedPassphrase(parsed.deletePassphrase);
+          setAutoFill(true);
+        } else {
+          setSavedPassphrase("");
+          setAutoFill(false);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load saved settings in AssetsPage", e);
+    }
+  }, [fetchAssets, deleteConfirmOpen]);
 
   const handleDelete = (publicId: string) => {
     setAssetToDelete(publicId);
     setDeleteConfirmOpen(true);
   };
 
-  const confirmDelete = async () => {
-    if (!assetToDelete) return;
+  const confirmDelete = async (passphrase?: string) => {
+    if (!assetToDelete) return false;
     
-    const result = await deleteAsset(assetToDelete);
+    const result = await deleteAsset(assetToDelete, passphrase);
     if (result.success) {
       setAssets(prev => prev.filter(a => a.public_id !== assetToDelete));
       toast.success("Asset deleted");
+      setAssetToDelete(null);
+      return true;
     } else {
       toast.error(result.error);
+      return false;
     }
-    setAssetToDelete(null);
   };
 
   const copyToClipboard = (text: string) => {
@@ -292,6 +313,8 @@ export default function AssetsPage() {
           description="Are you sure you want to delete this asset? This action cannot be undone and will remove the file from Cloudinary."
           confirmText="Delete Asset"
           variant="destructive"
+          requirePassphrase={true}
+          savedPassphrase={autoFill ? savedPassphrase : ""}
         />
       </main>
     </div>

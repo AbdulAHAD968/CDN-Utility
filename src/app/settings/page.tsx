@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { getSystemConfig } from "@/actions/cloudinary";
-import { Shield, Settings, Database, Bell, Save, CheckCircle2, Loader2 } from "lucide-react";
+import { Shield, Settings, Database, Bell, Save, CheckCircle2, Loader2, Lock, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -16,11 +16,14 @@ export default function SettingsPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [systemConfig, setSystemConfig] = useState<any>(null);
+  const [showPassphrase, setShowPassphrase] = useState(false);
   const [preferences, setPreferences] = useState({
     maxFileSize: "10",
     maxBatchSize: "50",
     forceHttps: true,
     autoOptimize: true,
+    deletePassphrase: "",
+    rememberPassphrase: false,
   });
 
   
@@ -32,7 +35,11 @@ export default function SettingsPage() {
 
         const saved = localStorage.getItem("cdn_utility_settings");
         if (saved) {
-          setPreferences(JSON.parse(saved));
+          const parsed = JSON.parse(saved);
+          setPreferences(prev => ({
+            ...prev,
+            ...parsed
+          }));
         }
       } catch (e) {
         console.error("Failed to load settings", e);
@@ -113,6 +120,61 @@ export default function SettingsPage() {
                 <p className="text-xs text-muted leading-relaxed">
                   These values are locked to your project's environment variables. To update them, please modify your <code className="bg-surface-soft px-1 rounded">.env.local</code> file.
                 </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Security & Protection Card */}
+          <Card className="bg-canvas border-hairline shadow-none">
+            <CardHeader>
+              <div className="flex items-center gap-2 mb-2">
+                <Lock className="w-5 h-5 text-primary" />
+                <CardTitle className="font-serif text-xl">Security & Protection</CardTitle>
+              </div>
+              <CardDescription>
+                Configure passphrase protection to secure your assets from unauthorized deletions.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="deletePassphrase">Local Saved Passphrase</Label>
+                  <div className="relative">
+                    <Input
+                      id="deletePassphrase"
+                      type={showPassphrase ? "text" : "password"}
+                      value={preferences.deletePassphrase || ""}
+                      onChange={(e) => updatePref("deletePassphrase", e.target.value)}
+                      placeholder="Enter passphrase to save locally"
+                      className="bg-surface-soft border-hairline h-11 pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassphrase(!showPassphrase)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-ink transition-colors"
+                    >
+                      {showPassphrase ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  <p className="text-xs text-muted">
+                    This passphrase will be used to auto-fill the confirmation dialog in this browser.
+                  </p>
+                </div>
+
+                <div 
+                  className="flex items-center justify-between p-4 rounded-2xl hover:bg-surface-soft transition-all cursor-pointer group"
+                  onClick={() => updatePref("rememberPassphrase", !preferences.rememberPassphrase)}
+                >
+                  <div className="space-y-1">
+                    <Label className="text-base font-medium group-hover:text-primary transition-colors cursor-pointer">Auto-fill Saved Passphrase</Label>
+                    <p className="text-sm text-muted">Automatically load your saved passphrase when deleting assets.</p>
+                  </div>
+                  <Switch
+                    checked={preferences.rememberPassphrase || false}
+                    onCheckedChange={(val) => updatePref("rememberPassphrase", val)}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
