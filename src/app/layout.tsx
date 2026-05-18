@@ -3,6 +3,8 @@ import { Inter, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,6 +99,8 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster position="top-right" expand={false} richColors />
+          <Analytics />
+          <SpeedInsights />
         </TooltipProvider>
       </body>
     </html>
